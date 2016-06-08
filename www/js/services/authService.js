@@ -2,7 +2,7 @@ angular.module('starter.services')
 
 .service('authService', ['$http', '$window', authService]);
 
-var URL = "http://dead-drop-backend.herokuapp.com/users/";
+var URL = "https://dead-drop-backend.herokuapp.com/users/";
 
 function authService($http, $window) {
   var user = {};
