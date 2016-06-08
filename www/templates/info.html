@@ -1,0 +1,37 @@
+<ion-view view-title="Drop Info">
+  <ion-content class="padding">
+    <div class="row">
+      <h3 class="padding-horizontal center">{{ pin.pin_title }}</h3>
+    </div>
+    <div class="row">
+      <h4 style="color: red" ng-show="pin.picked_up" class="padding-horizontal center">Picked up!</h4>
+      <h4 style="color: red" ng-show="pin.missing" class="padding-horizontal center">Reported Missing!</h4>
+    </div>
+    <div ng-show="pin.picked_up" class="row">
+      <p class="center"><strong>Receiver message:</strong> {{ pin.receiver_message }}<br/>
+      Picked up by <a><strong>{{ pin.receiver}}</strong></a> {{pin.pick_up_time}}</p>
+    </div>
+    <div ng-show="pin.picked_up" class="row">
+      <img style="height: 250px; max-width: 95%" class="padding center" ng-src="{{pin.receiver_image}}" alt="image"/>
+    </div>
+    <div class="row">
+      <p class="center">
+        <strong>Dropper message:</strong> {{ pin.pin_description }}
+      </p>
+    </div>
+    <div class="row">
+      <img style="height: 250px; max-width: 95%" class="padding center" ng-src="{{pin.pin_image}}" alt="image"/>
+    </div>
+    <div class="row">
+      <p class="center">
+        Dropped by <a><strong>{{ pin.dropper}}</strong></a> {{pin.drop_time}}
+      </p>
+    </div>
+    <div ng-hide="pin.picked_up" class="row">
+      <a style="width: 100%" ng-href="#/tab/dash/pickup/{{pin.id}}"><button id="pickUp" type="submit" class="button button-block">Pick up!</button></a>
+    </div>
+    <div class="row">
+      <button id="report" type="submit" class="button button-block">Report</button>
+    </div>
+  </ion-content>
+</ion-view>

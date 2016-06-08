@@ -1,0 +1,21 @@
+<ion-view view-title="New Drop" cache-view="false">
+  <ion-content>
+    <div id="newMap" data-tap-disabled="true"></div>
+    <label class="item item-input">
+      <span class="input-label">What are you dropping?</span>
+      <input ng-model="pin.pin_title" type="text" required>
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Message</span>
+      <input ng-model="pin.pin_description" type="text">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Image</span>
+      <input ng-model="pin.pin_image" type="text" required>
+    </label>
+    <div class="row">
+      <img style="height: 250px; max-width: 95%" class="padding center" ng-src="{{pin.pin_image}}" alt="image"/>
+    </div>
+    <button style="margin: none" type="submit" class="button button-block" ng-click="placeDrop()">Drop</button>
+  </ion-content>
+</ion-view>

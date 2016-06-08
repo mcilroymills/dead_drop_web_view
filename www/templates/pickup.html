@@ -1,0 +1,16 @@
+<ion-view view-title="Pick Up" cache-view="false">
+  <ion-content>
+    <label class="item item-input">
+      <span class="input-label">Message</span>
+      <input ng-model="pin.receiver_message" type="text" required>
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Image</span>
+      <input ng-model="pin.receiver_image" type="text" required>
+    </label>
+    <div class="row">
+      <img style="height: 250px; max-width: 95%" class="padding center" ng-src="{{pin.receiver_image}}" alt="image"/>
+    </div>
+    <button style="margin: none" type="submit" class="button button-block" ng-click="pickup()">Pick Up</button>
+  </ion-content>
+</ion-view>

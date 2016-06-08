@@ -1,0 +1,32 @@
+<ion-view>
+  <ion-content class="padding center account">
+    <div class="row">
+      <img class="center" src="./img/deaddropsm.png"/>
+    </div>
+    <form ng-submit="register()" name='signInForm'>
+      <div class="list">
+        <label class="item item-input item-floating-label" id="firstFormInputField">
+          <span class="input-label">username</span>
+          <input name="name" type="text" placeholder="username" ng-model="user.username" required>
+        </label>
+        <label class="item item-input item-floating-label" id="firstFormInputField">
+          <span class="input-label">email</span>
+          <input name="email" type="email" placeholder="email" ng-model="user.email" required>
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">password</span>
+          <input name="password" type="password" placeholder="password" ng-model="user.password" required>
+        </label>
+        <button type="submit" class="button button-block">Register</button>
+      </div>
+    </form>
+    <div>
+      <div class="row row-center">
+        <div class="col" id='signUpLinkSection' style="text-align:center">Already have an account?  <a ng-href="#/login" class='signUpLink'>Click here!</a></div>
+      </div>
+      <div class="row row-center">
+        <div class="col" id='signUpLinkSection' style="text-align:center">Want to sign in as a guest?  <a ng-href="" ng-click="loginAsGuest()" class='signUpLink'>Click here!</a></div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
