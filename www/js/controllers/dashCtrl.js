@@ -23,7 +23,6 @@ angular.module('starter.controllers')
     });
 
   $scope.pins = dataService.getPins();
-  console.log($scope.pins);
 
   $scope.newPin = function () {
     $state.go('tab.newDrop');
