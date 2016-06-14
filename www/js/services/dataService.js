@@ -127,7 +127,6 @@ function dataService () {
       var pin;
       for (var i = 0; i < pins.length; i++) {
         if (pins[i].id === Number(id)) {
-          console.log("found pin");
           return pins[i];
         }
       }
@@ -138,6 +137,23 @@ function dataService () {
     },
     editPin: function (pin) {
       pins[pin.id-1] = pin;
-    }
+    },
+    getDropsByUser: function (user_id){
+      var array = [];
+      pins.forEach(function(pin) {
+        if (pin.dropper_id === user_id)
+          array.push(pin);
+      });
+      return array;
+    },
+    getPickupsByUser: function (user_id){
+      var array = [];
+      pins.forEach(function(pin) {
+        if (pin.receiver_id === user_id)
+          array.push(pin);
+      });
+      return array;
+    },
+
   };
 }

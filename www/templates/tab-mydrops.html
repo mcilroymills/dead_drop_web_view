@@ -1,0 +1,15 @@
+<ion-view view-title="My Drops">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="drop in drops" type="item-text-wrap" href="#/tab/dash/info/{{drop.id}}">
+        <img ng-src="{{drop.pin_image}}">
+        <h2>{{drop.pin_title}}</h2>
+        <p>{{drop.pin_description}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
