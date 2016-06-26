@@ -10,10 +10,14 @@ angular.module('starter.controllers')
 .controller('dashCtrl', function($scope, $rootScope, authService, crudService, dataService, $cordovaGeolocation, $ionicLoading, $location, $state) {
   $rootScope.hideNav = false;
 
+  //var pinarr =
+  //console.log(pinarr);
+
+
   var memberId = authService.getUserID();
   var token = authService.getUserToken();
 
-    // Setup the loader
+    // Set up the loading spinner
     $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -22,7 +26,7 @@ angular.module('starter.controllers')
       showDelay: 0
     });
 
-  $scope.pins = dataService.getPins();
+  $scope.pins = crudService.getAllPins(token);
 
   $scope.newPin = function () {
     $state.go('tab.newDrop');
@@ -46,7 +50,7 @@ angular.module('starter.controllers')
 
     //Create a single infowindow object
     var infowindow = new google.maps.InfoWindow({
-        content: 'test'
+        content: ''
       });
 
       $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
