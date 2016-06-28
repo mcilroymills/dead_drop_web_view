@@ -1,7 +1,8 @@
+// This service stores the hard-coded pin data for demonstration mode
 angular.module('starter.services')
-
 .service('dataService', [dataService]);
 
+// Sample pin data
 var pins = [
     {
         id: 1,

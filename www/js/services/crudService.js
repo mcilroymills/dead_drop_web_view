@@ -1,10 +1,10 @@
+// This service handles CRUD actions with the back-end
 angular.module('starter.services')
-
 .service('crudService', ['$http', '$window', crudService]);
 
 function crudService($http) {
 
-  var URL = "https://dead-drop-backend.herokuapp.com/api";
+  var URL = "http://localhost:5000/api";
 
   return {
     getAllPins: function (token) {

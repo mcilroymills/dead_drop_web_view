@@ -15,6 +15,7 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 }
 /*End removing google logo etc.*/
 
+
 /*Sign in page image*/
 .center {
     margin-left: auto;

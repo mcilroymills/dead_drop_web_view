@@ -1,12 +1,14 @@
+// login page controller
 angular.module('starter.controllers')
-
 .controller('loginCtrl', function($rootScope, $scope, $location, authService) {
+
+  // hide nav bar on login page
   $rootScope.hideNav = true;
   $scope.user = {};
+
   $scope.login = function() {
     authService.login($scope.user)
       .then(function(user) {
-        console.log("user after login", user);
         authService.setUserInfo(user);
         $rootScope.currentUser = {
           name: authService.getUserName(),
@@ -20,6 +22,7 @@ angular.module('starter.controllers')
         console.log(err);
       });
   };
+  // so demo users dont have to create an account to demo the app
   $scope.loginAsGuest = function() {
     var guestUser = {
       email: "millsmcilroy@gmail.com",

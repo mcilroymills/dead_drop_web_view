@@ -1,4 +1,4 @@
-// This file contains the module declaration and routes
+// This file contains the module declarations and routes
 
 // 'starter' is the name of this angular module (also set in a <body> attribute in index.html)
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
@@ -10,7 +10,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -19,19 +18,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 })
 
+// These are the "routes"
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
-  //resetting the headers client prevents the preflight invalid HTTP status code 500:
-  //this apparently clears req.body.....leave out
-  /*$httpProvider.defaults.headers.common = {};
-  $httpProvider.defaults.headers.post = {};
-  $httpProvider.defaults.headers.put = {};
-  $httpProvider.defaults.headers.patch = {};*/
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
 
   .state('login', {
@@ -53,6 +42,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     templateUrl: 'templates/tabs.html'
   })
 
+  // dashboard
   .state('tab.dash', {
     url: '/dash',
     views: {
@@ -63,6 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+  //individual pin info page
   .state('tab.info', {
     url: '/dash/info/:pin_id',
     views: {
@@ -73,6 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+  // pickup pin page
   .state('tab.pickup', {
     url: '/dash/pickup/:pin_id',
     views: {
@@ -83,6 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+  // new drop page
   .state('tab.newDrop', {
     url: '/dash/new',
     views: {
@@ -93,6 +86,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+  // My Drops tab
   .state('tab.mydrops', {
       url: '/mydrops',
       views: {
@@ -103,27 +97,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    /*.state('tab.chat-detail', {
-          url: '/chats/:chatId',
-          views: {
-            'tab-drops': {
-              templateUrl: 'templates/chat-detail.html',
-              controller: 'ChatDetailCtrl'
-            }
-          }
-        })*/
-
-      .state('tab.account', {
-        url: '/account',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/tab-account.html',
-            controller: 'AccountCtrl'
-          }
-        }
-      });
+  // Profile tab
+  .state('tab.account', {
+    url: '/account',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-account.html',
+        controller: 'AccountCtrl'
+      }
+    }
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 
 });
+
+//Declare starter.controllers module
+angular.module('starter.controllers', []);

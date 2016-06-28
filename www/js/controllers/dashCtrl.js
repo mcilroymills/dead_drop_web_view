@@ -1,41 +1,49 @@
+/** GLOBAL VARIABLES FOR MAP **/
 //Set default marker icon
 var iconImage = '../images/grn_blank.png';
 //Declare & intialize contentstring for the infowindows
 var contentString = '<p>test line 5</p>';
-
+//"Retro" map skin [colors: teal: #84afa3 (water), gray-blue #3f518c (transit lines), mustard #B09010 (highways)]
 var mapStyle = [{"featureType":"administrative","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"water","stylers":[{"visibility":"simplified"}]},{"featureType":"transit","stylers":[{"visibility":"simplified"}]},{"featureType":"landscape","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"visibility":"off"}]},{"featureType":"road.local","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"visibility":"on"}]},{"featureType":"water","stylers":[{"color":"#84afa3"},{"lightness":52}]},{"stylers":[{"saturation":-17},{"gamma":0.36}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"color":"#3f518c"}]}];
 
 angular.module('starter.controllers')
 
 .controller('dashCtrl', function($scope, $rootScope, authService, crudService, dataService, $cordovaGeolocation, $ionicLoading, $location, $state) {
+  // display nav bar after login
   $rootScope.hideNav = false;
-
-  //var pinarr =
-  //console.log(pinarr);
-
 
   var memberId = authService.getUserID();
   var token = authService.getUserToken();
 
-    // Set up the loading spinner
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: true,
-      maxWidth: 200,
-      showDelay: 0
-    });
+  // Set up the loading spinner
+  $ionicLoading.show({
+    content: 'Loading',
+    animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0
+  });
 
-  $scope.pins = crudService.getAllPins(token);
+  /** Get all pins from back-end db (commented out for presentation mode)**/
+  /*crudService.getAllPins(token).then(function(pins){
+    $scope.pins = pins.data.rows;
+    console.log(pins.data.rows);
+  });*/
 
+  //Get pins from front-end dataService (for presentation mode)
+  $scope.pins = dataService.getPins();
+
+  //This function takes user to new drop view
   $scope.newPin = function () {
     $state.go('tab.newDrop');
   };
 
+  // map initialization function
   $scope.initialize = function () {
     // display map
     var options = {timeout: 10000, enableHighAccuracy: true};
 
+    //Get current location
     $cordovaGeolocation.getCurrentPosition(options).then(function(position){
 
       var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -73,7 +81,7 @@ angular.module('starter.controllers')
           windowContent: contentString,
           icon: iconImage
         });
-        //Add event listener for pin clicks
+        //Add event listener for pin clicks/taps
         google.maps.event.addListener(marker, 'click', function () {
               infowindow.setContent(this.windowContent);
               infowindow.open(map, this);
@@ -89,7 +97,7 @@ angular.module('starter.controllers')
   $scope.initialize();
 });
 
-//Determines the color of the pin and html of the infowindow
+// Determines the color of the pin and html of the infowindow
 function setPin (pins, i) {
 
   if (!pins[i].picked_up && !pins[i].missing) {

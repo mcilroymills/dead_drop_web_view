@@ -1,5 +1,4 @@
 angular.module('starter.controllers')
-
 .controller('registerCtrl', function($rootScope, $scope, $location, authService) {
     $scope.user = {};
     $scope.register = function() {
